@@ -92,7 +92,7 @@ for iter = 1:length(riverId) % loop through each of the stations
     [b,bint,r,rint,stats] = regress(log10y,log10x1); % Run the regression
     OriginalLog_r2 = stats(1,1); % Pull out the R2 value
     OriginalLog_p = stats(1,3); % Pull out the p value
-    OriginalLog_p = round(OriginalLog_p,5,'significant');
+    OriginalLog_p = sprintf('%.4f ', [OriginalLog_p]);
     log10a = b(2,1); % Pull out the a coefficient in log
     log10b = b(1,1); % Pull out the b coefficient in log
     a = 10^log10a; % Convert from log10 to exp
@@ -122,7 +122,7 @@ for iter = 1:length(riverId) % loop through each of the stations
     % Display the best-fit statistics
     strIn1 = ['$$SSC = ' num2str(log10b) '\hat{Q}+{' num2str(log10a) '}$$'];
     strIn2 = ['$$R^2 = ' num2str(stats(1,1)) '$$'];
-    strIn3 = ['$$p = ' num2str(stats(1,3)) '$$'];
+    strIn3 = ['$$p = ' OriginalLog_p '$$'];
     nIn = find(~isnan(log10x)&~isnan(log10y));
     strIn4 = ['$$n = ' num2str(length(nIn)) '$$'];
     text(0.020989010989011, 0.92706563208434, {strIn1, strIn2, strIn3, strIn4},...
