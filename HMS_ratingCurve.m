@@ -92,6 +92,7 @@ for iter = 1:length(riverId) % loop through each of the stations
     [b,bint,r,rint,stats] = regress(log10y,log10x1); % Run the regression
     OriginalLog_r2 = stats(1,1); % Pull out the R2 value
     OriginalLog_p = stats(1,3); % Pull out the p value
+    OriginalLog_p = round(OriginalLog_p,5,'significant');
     log10a = b(2,1); % Pull out the a coefficient in log
     log10b = b(1,1); % Pull out the b coefficient in log
     a = 10^log10a; % Convert from log10 to exp
